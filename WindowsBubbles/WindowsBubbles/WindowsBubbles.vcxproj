@@ -73,15 +73,15 @@
     <OutDir>$(SolutionDir)\Build\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)\Build\Intermediate\$(Configuration)\</IntDir>
     <EnableCppCoreCheck>true</EnableCppCoreCheck>
-    <IncludePath>$(SolutionDir)ThirdParty\SFML\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)ThirdParty\SFML\lib\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)ThirdParty\SFML\include\;$(SolutionDir)ThirdParty\Box2D\;$(SolutionDir)ThirdParty\glm\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)ThirdParty\SFML\lib\;$(SolutionDir)ThirdParty\Box2D\lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)\Build\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)\Build\Intermediate\$(Configuration)\</IntDir>
     <EnableCppCoreCheck>true</EnableCppCoreCheck>
-    <IncludePath>$(SolutionDir)ThirdParty\SFML\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)ThirdParty\SFML\lib\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)ThirdParty\SFML\include\;$(SolutionDir)ThirdParty\Box2D\;$(SolutionDir)ThirdParty\glm\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)ThirdParty\SFML\lib\;$(SolutionDir)ThirdParty\Box2D\lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -104,7 +104,7 @@
       <PreprocessorDefinitions>SFML_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;Box2D_d.lib;sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -138,17 +138,19 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;sfml-graphics-s.lib;sfml-window-s.lib;sfml-system-s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;Box2D.lib;sfml-graphics-s.lib;sfml-window-s.lib;sfml-system-s.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Graphics\GLRenderer.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Physics\Physics.cpp" />
     <ClCompile Include="WindowsBubbles.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Graphics\GLRenderer.h" />
     <ClInclude Include="Graphics\Vertex.h" />
+    <ClInclude Include="Physics\Physics.h" />
     <ClInclude Include="WindowsBubbles.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

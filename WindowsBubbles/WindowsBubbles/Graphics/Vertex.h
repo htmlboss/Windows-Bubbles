@@ -1,11 +1,12 @@
 #pragma once
 
-#include <SFML/System/Vector3.hpp>
-#include <SFML/System/Vector2.hpp>
+#include <glm/vec2.hpp>
+#include <glm/vec3.hpp>
+
 #include <cstddef>
 
 struct Vertex {
-	Vertex(const sf::Vector2f& pos, const sf::Vector3f& col) : position(pos), color(col) {}
+	Vertex(const glm::vec2& pos, const glm::vec3& col) : position(pos), color(col) {}
 
 	// Member offsets for data interleaving in OpenGL
 	static auto positionOffset() {
@@ -16,7 +17,11 @@ struct Vertex {
 		return offsetof(Vertex, color);
 	}
 
+	static auto vertexSize() noexcept {
+		return sizeof(Vertex);
+	}
 
-	sf::Vector2f position;
-	sf::Vector3f color;
+
+	glm::vec2 position;
+	glm::vec3 color;
 };

@@ -16,6 +16,9 @@
     <Filter Include="Graphics">
       <UniqueIdentifier>{dad5a670-c587-4c90-a337-5d60f9e95a99}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Physics">
+      <UniqueIdentifier>{7ac92f60-b10e-4b78-8e4b-174bdd8870e2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -27,6 +30,9 @@
     <ClCompile Include="Graphics\GLRenderer.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="Physics\Physics.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WindowsBubbles.h">
@@ -37,6 +43,9 @@
     </ClInclude>
     <ClInclude Include="Graphics\Vertex.h">
       <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\Physics.h">
+      <Filter>Physics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

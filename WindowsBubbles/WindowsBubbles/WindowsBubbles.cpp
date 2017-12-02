@@ -2,7 +2,10 @@
 
 #include <SFML/Window/ContextSettings.hpp>
 
+/***********************************************************************************/
+// https://stackoverflow.com/questions/12945277/drawing-antialiased-circle-using-shaders
 void WindowsBubbles::init() {
+	// Setup SFML
 	sf::ContextSettings settings;
 #ifdef _DEBUG
 	// Create debug context
@@ -16,15 +19,23 @@ void WindowsBubbles::init() {
 	settings.majorVersion = 4;
 	settings.minorVersion = 5;
 	
+	// Window
 	m_mainWindow = std::make_unique<sf::RenderWindow>(sf::VideoMode{1280, 720}, "Windows Bubbles", sf::Style::Default, settings);
 	m_mainWindow->setVerticalSyncEnabled(true);
 	m_mainWindow->setActive(true);
 
+	// Renderer
 	m_renderer = std::make_unique<GLRenderer>();
 	m_renderer->init(1280, 720);
+
+	// Physics
+	m_physics = std::make_unique<Physics>();
+	m_physics->init(1);
 }
 
+/***********************************************************************************/
 void WindowsBubbles::update() {
+
 	bool running = true;
 	while (running) {
 		// Handle events
@@ -42,9 +53,10 @@ void WindowsBubbles::update() {
 			}
 		}
 
+		m_physics->update();
+
 		m_renderer->update();
 
-		// Swap back-buffers
 		m_mainWindow->display();
 	}
 }

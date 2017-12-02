@@ -1,5 +1,7 @@
 #pragma once
 
+#include <glm/mat4x4.hpp>
+
 class GLRenderer {
 	
 public:
@@ -11,4 +13,8 @@ public:
 	void resize(const unsigned width, const unsigned height);
 
 private:
+	void calcProjMatrix(const unsigned width, const unsigned height);
+
+	glm::mat4 m_projectionMatrix;
+	glm::mat4 m_viewMatrix;
 };
