@@ -11,13 +11,13 @@ void WindowsBubbles::init() {
 	// Create debug context
 	settings.attributeFlags = sf::ContextSettings::Core | sf::ContextSettings::Debug;
 #else
-	settings.attributeFlags = sf::ContextSettings::Core
+	settings.attributeFlags = sf::ContextSettings::Core;
 #endif
 	settings.depthBits = 24;
 	settings.stencilBits = 8;
 	settings.antialiasingLevel = 4;
 	settings.majorVersion = 4;
-	settings.minorVersion = 5;
+	settings.minorVersion = 4;
 	
 	// Window
 	m_mainWindow = std::make_unique<sf::RenderWindow>(sf::VideoMode{1280, 720}, "Windows Bubbles", sf::Style::Default, settings);

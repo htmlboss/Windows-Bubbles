@@ -73,14 +73,14 @@
     <OutDir>$(SolutionDir)\Build\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)\Build\Intermediate\$(Configuration)\</IntDir>
     <EnableCppCoreCheck>true</EnableCppCoreCheck>
-    <IncludePath>$(SolutionDir)ThirdParty\SFML\include\;$(SolutionDir)ThirdParty\Box2D\;$(SolutionDir)ThirdParty\glm\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)ThirdParty\SFML\include\;$(SolutionDir)ThirdParty\Box2D\;$(SolutionDir)ThirdParty\glm\;$(SolutionDir)ThirdParty\GLAD\;$(SolutionDir)ThirdParty\GLAD\glad\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)ThirdParty\SFML\lib\;$(SolutionDir)ThirdParty\Box2D\lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)\Build\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)\Build\Intermediate\$(Configuration)\</IntDir>
     <EnableCppCoreCheck>true</EnableCppCoreCheck>
-    <IncludePath>$(SolutionDir)ThirdParty\SFML\include\;$(SolutionDir)ThirdParty\Box2D\;$(SolutionDir)ThirdParty\glm\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)ThirdParty\SFML\include\;$(SolutionDir)ThirdParty\Box2D\;$(SolutionDir)ThirdParty\glm\;$(SolutionDir)ThirdParty\GLAD\;$(SolutionDir)ThirdParty\GLAD\glad\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)ThirdParty\SFML\lib\;$(SolutionDir)ThirdParty\Box2D\lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -142,13 +142,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\ThirdParty\GLAD\glad\glad.c" />
     <ClCompile Include="Graphics\GLRenderer.cpp" />
+    <ClCompile Include="Graphics\Shader.cpp" />
+    <ClCompile Include="Graphics\ShaderProgram.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Physics\Physics.cpp" />
     <ClCompile Include="WindowsBubbles.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Graphics\GLRenderer.h" />
+    <ClInclude Include="Graphics\Shader.h" />
+    <ClInclude Include="Graphics\ShaderProgram.h" />
     <ClInclude Include="Graphics\Vertex.h" />
     <ClInclude Include="Physics\Physics.h" />
     <ClInclude Include="WindowsBubbles.h" />
