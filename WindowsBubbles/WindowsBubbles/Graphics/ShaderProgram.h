@@ -4,6 +4,8 @@
 #include <array>
 #include <unordered_map>
 
+#include <glm/mat4x4.hpp>
+
 class Shader;
 
 class ShaderProgram {
@@ -15,6 +17,10 @@ public:
 	void init(const std::initializer_list<Shader> shaders);
 	void bind() const;
 	void deleteProgram() const;
+
+	ShaderProgram& SetUniform(const std::string& uniformName, const glm::vec2& value);
+	ShaderProgram& SetUniform(const std::string& uniformName, const glm::vec3& value);
+	ShaderProgram& SetUniform(const std::string& uniformName, const glm::mat4x4& value);
 
 private:
 	bool linkAndValidate();

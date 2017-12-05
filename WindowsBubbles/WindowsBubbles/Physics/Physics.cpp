@@ -10,8 +10,7 @@
 Physics::Physics() :	m_timestep(1.0f / 60.0f),
 						m_velocityIterations(8),
 						m_positionIterations(3),
-						m_stepsToSimulate(60),
-						m_world(b2Vec2(0.0f, -10.0f)) {
+						m_world(b2Vec2(0.0f, -9.81f)) {
 }
 
 /***********************************************************************************/
@@ -19,13 +18,13 @@ void Physics::init(const std::size_t numBubbles) {
 	// Create bubbles
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
-	bodyDef.position.Set(0.0f, 4.0f);
+	bodyDef.position.Set(0.0f / 60.0f, 70.0f / 60.0f);
 	//bodyDef.angle = 0.0f;
 
 	m_body = m_world.CreateBody(&bodyDef);
 
 	b2PolygonShape square;
-	square.SetAsBox(1.0f, 1.0f);
+	square.SetAsBox(1.0f / 60.0f, 1.0f / 60.0f);
 
 	// Physical properties
 	b2FixtureDef fixture;
@@ -36,10 +35,10 @@ void Physics::init(const std::size_t numBubbles) {
 	m_body->CreateFixture(&fixture);
 
 	b2BodyDef ground;
-	ground.position.Set(0.0f, -10.0f);
+	ground.position.Set(0.0f / 60.0f, -10.0f / 60.0f);
 
 	b2PolygonShape groundBox;
-	groundBox.SetAsBox(50.0f, 10.0f); // half-width and half-height
+	groundBox.SetAsBox(50.0f / 60.0f, 10.0f / 60.0f); // half-width and half-height
 	
 	auto groundBody = m_world.CreateBody(&ground);
 	groundBody->CreateFixture(&groundBox, 0.0f);

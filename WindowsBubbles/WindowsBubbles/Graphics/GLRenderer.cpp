@@ -17,14 +17,10 @@
 	 Shader vertexShader, fragmentShader;
 	 vertexShader.init("Data/Shaders/basic.vert", GL_VERTEX_SHADER);
 	 fragmentShader.init("Data/Shaders/basic.frag", GL_FRAGMENT_SHADER);
+	 m_shaderProgram.init({ vertexShader, fragmentShader });
 
-	 m_shaderProgram.init({vertexShader, fragmentShader});
-
-	 m_viewMatrix = glm::lookAt(
-		 glm::vec3(0.0f, 0.0f, -5.0f), // Camera is at (0,0,5), in World Space
-		 glm::vec3(0.0f), // and looks at the origin
-		 glm::vec3(0.0f, 1.0f, 0.0f)  // Head is up (set to 0,-1,0 to look upside-down)
-	 );
+	 m_viewMatrix = glm::lookAt({0.0f, 0.0f, -1.0f}, glm::vec3(0.0f), {0.0f, 1.0f, 0.0f});
+	 updateMatrices(width, height);
 
 	 glGenVertexArrays(1, &m_vao);
 	 glBindVertexArray(m_vao);
@@ -42,11 +38,13 @@
 }
 
  /***********************************************************************************/
- void GLRenderer::update()  {
+ void GLRenderer::update(const glm::vec3& pos)  {
 	 glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	 glClear(GL_COLOR_BUFFER_BIT);
 
 	 m_shaderProgram.bind();
+	 m_shaderProgram.SetUniform("pos", glm::translate(glm::mat4(1.0f), pos));
+	 m_shaderProgram.SetUniform("projView", m_projViewMatrix);
 	 glBindVertexArray(m_vao);
 	 glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
  }
@@ -64,10 +62,14 @@
  void GLRenderer::resize(const unsigned width, const unsigned height) {
 	glViewport(0, 0, width, height);
 	
-	calcProjMatrix(width, height);
+	updateMatrices(width, height);
  }
 
  /***********************************************************************************/
- void GLRenderer::calcProjMatrix(const unsigned width, const unsigned height) {
-	 m_projectionMatrix = glm::ortho(0.0f, static_cast<float>(width), static_cast<float>(height), 0.0f, 0.1f, 10.0f);
+ void GLRenderer::updateMatrices(const unsigned width, const unsigned height) {
+	 // https://solarianprogrammer.com/2013/05/22/opengl-101-matrices-projection-view-model/
+	 m_projectionMatrix = glm::ortho(-static_cast<float>(width) / static_cast<float>(height), static_cast<float>(width) / static_cast<float>(height), -1.0f, 0.0f, -1.0f, 1.0f);
+	 // Pre-compute the projection-view matrix product since it rarely changes.
+	 // Saves the GPU from computing it for every vertex.
+	 m_projViewMatrix = m_projectionMatrix * m_viewMatrix;
  }

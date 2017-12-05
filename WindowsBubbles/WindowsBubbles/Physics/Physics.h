@@ -11,12 +11,13 @@ public:
 	void init(const std::size_t numBubbles);
 	void update();
 
+	auto getPosition() const { return m_body->GetPosition(); }
+
 private:
 	// Simulation parameters
 	const float32 m_timestep;
 	const int32 m_velocityIterations;
 	const int32 m_positionIterations;
-	const int32 m_stepsToSimulate;
 	
 	b2World m_world;
 

@@ -4,6 +4,8 @@
 
 #include <iostream>
 
+#include <glm/gtc/type_ptr.hpp>
+
 /***********************************************************************************/
 ShaderProgram::~ShaderProgram() {
 	deleteProgram();
@@ -38,6 +40,27 @@ void ShaderProgram::deleteProgram() const {
 	if (m_programID != 0) {
 		glDeleteProgram(m_programID);
 	}
+}
+
+/***********************************************************************************/
+ShaderProgram& ShaderProgram::SetUniform(const std::string& uniformName, const glm::vec2& value) {
+	glUniform2f(m_uniforms.at(uniformName), value.x, value.y);
+
+	return *this;
+}
+
+/***********************************************************************************/
+ShaderProgram& ShaderProgram::SetUniform(const std::string& uniformName, const glm::vec3& value) {
+	glUniform3f(m_uniforms.at(uniformName), value.x, value.y, value.z);
+
+	return *this;
+}
+
+/***********************************************************************************/
+ShaderProgram& ShaderProgram::SetUniform(const std::string& uniformName, const glm::mat4x4& value) {
+	glUniformMatrix4fv(m_uniforms.at(uniformName), 1, GL_FALSE, value_ptr(value));
+
+	return *this;
 }
 
 /***********************************************************************************/

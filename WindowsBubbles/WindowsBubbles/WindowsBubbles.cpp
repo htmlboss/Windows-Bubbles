@@ -55,8 +55,11 @@ void WindowsBubbles::update() {
 
 		m_physics->update();
 
-		m_renderer->update();
+		const auto pos = m_physics->getPosition();
+		m_renderer->update({pos.x, pos.y, 0.0f});
 
 		m_mainWindow->display();
 	}
+
+	m_renderer->shutdown();
 }

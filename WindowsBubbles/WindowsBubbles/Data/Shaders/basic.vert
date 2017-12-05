@@ -2,6 +2,9 @@
 
 layout (location = 0) in vec3 position;
 
+uniform mat4 pos;
+uniform mat4 projView;
+
 void main() {
-    gl_Position = vec4(position.xyz, 1.0);
+    gl_Position = projView * pos * vec4(position.xyz, 1.0);
 }
