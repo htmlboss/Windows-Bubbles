@@ -154,7 +154,6 @@
     <ClInclude Include="Graphics\GLRenderer.h" />
     <ClInclude Include="Graphics\Shader.h" />
     <ClInclude Include="Graphics\ShaderProgram.h" />
-    <ClInclude Include="Graphics\Vertex.h" />
     <ClInclude Include="Physics\Physics.h" />
     <ClInclude Include="WindowsBubbles.h" />
   </ItemGroup>

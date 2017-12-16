@@ -50,9 +50,6 @@
     <ClInclude Include="Graphics\GLRenderer.h">
       <Filter>Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\Vertex.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="Physics\Physics.h">
       <Filter>Physics</Filter>
     </ClInclude>
